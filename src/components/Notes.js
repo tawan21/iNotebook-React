@@ -9,7 +9,7 @@ export const Notes = (props) => {
     let history = useHistory();
     const { notes, getNotes, editNote } = context;
     useEffect(() => {
-        if(localStorage.getItem('token'))
+        if (localStorage.getItem('token'))
             getNotes()
         else
             history.push("/login");
@@ -37,18 +37,18 @@ export const Notes = (props) => {
             <button type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal" ref={ref}>
                 Launch demo modal
             </button>
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="exampleModal" tabIndex="-1">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">Edit Note</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div className="modal-body">
                             <form className="my-3">
                                 <div className="mb-3">
                                     <label htmlFor="etitle" className="form-label">Title</label>
-                                    <input type="text" className="form-control" id="etitle" name="etitle" aria-describedby="emailHelp" value={note.etitle} onChange={onChange} minLength={3} required />
+                                    <input type="text" className="form-control" id="etitle" name="etitle" value={note.etitle} onChange={onChange} minLength={3} required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="edescription" className="form-label">Description</label>
@@ -67,15 +67,18 @@ export const Notes = (props) => {
                     </div>
                 </div>
             </div>
-
-            <div className="row my-3">
-                <h2>Your Notes</h2>
-                <div className="container mx-2">
-                    {notes.length === 0 && 'No notes to display'}
+            <div className="container">
+                <div className="row my-5">
+                    <h2>Your Notes</h2>
+                    <div className="col-md-12">
+                        <p className="text-muted">
+                            {notes.length === 0 && "No notes to display"}
+                        </p>
+                    </div>
+                    {notes.map((note) => {
+                        return <Noteitem note={note} updateNote={updateNote} key={note._id} showAlert={props.showAlert} />;
+                    })}
                 </div>
-                {notes.map((note) => {
-                    return <Noteitem note={note} updateNote={updateNote} key={note._id} showAlert={props.showAlert} />;
-                })}
             </div>
         </>
     )

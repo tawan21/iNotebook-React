@@ -7,7 +7,7 @@ export const Signup = (props) => {
     let history = useHistory();
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const {name, email, password} = credentials;
+        const { name, email, password } = credentials;
         const response = await fetch(`${host}/api/auth/createuser`, {
             method: 'POST',
             headers: {
@@ -33,25 +33,25 @@ export const Signup = (props) => {
 
     return (
         <div className="container mt-2">
-            <h2 className="my-2">Create an Account for iNotebook</h2>
+            <h2 className="my-4">Create an Account for <span className="text-primary">iNotebook</span></h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Name</label>
-                    <input type="text" className="form-control" id="name" aria-describedby="emailHelp" onChange={onChange} name="name" />
+                    <input type="text" className="form-control w-50" id="name" onChange={onChange} name="name" />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={onChange} name="email" />
+                    <input type="email" className="form-control w-50" id="email" onChange={onChange} name="email" />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" onChange={onChange} name="password" minLength={5} required />
+                    <input type="password" className="form-control w-50" id="password" onChange={onChange} name="password" minLength={5} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="cpassword" className="form-label">Confirm Password</label>
-                    <input type="password" className="form-control" id="cpassword" onChange={onChange} name="cpassword" minLength={5} required />
+                    <input type="password" className="form-control w-50" id="cpassword" onChange={onChange} name="cpassword" minLength={5} required />
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary mt-3">Signup</button>
             </form>
         </div>
     )

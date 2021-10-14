@@ -4,7 +4,7 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = "Tawanisagoodb$oy";
+const JWT_SECRET = process.env.SECRET_KEY;
 const fetchuser = require('../middleware/fetchuser');
 
 // ROUTE 1: Create a User using: POST "/api/auth/createuser". No login required 
